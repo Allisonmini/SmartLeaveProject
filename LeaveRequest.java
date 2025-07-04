@@ -17,7 +17,6 @@ public class LeaveRequest {
         this.type = type;
         this.daysRequested = daysRequested;
         this.approved = approved;
-
     }
 
     public int getEmployeeId() {
@@ -60,7 +59,6 @@ public class LeaveRequest {
         this.daysRequested = daysRequested;
     }
 
-
     public boolean isApproved() {
         return approved;
     }
@@ -82,13 +80,17 @@ public class LeaveRequest {
     }
 
     public void approveLeave(Employee employee){
+        if (employee.hasSoDConflict()) {
+            System.out.println("Approval denied due to SoD conflict for " + employee.getName());
+            return;
+        }
         if (employee.getLeaveBalance() >= daysRequested){
             approved = true;
             employee.deductLeave(daysRequested);
-            System.out.println("Leave approved. ");
+            System.out.println("Leave approved.");
         }
         else {
-            System.out.println("Insufficient leave balance. ");
+            System.out.println("Insufficient leave balance.");
         }
     }
 }
