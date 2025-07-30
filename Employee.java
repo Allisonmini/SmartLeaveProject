@@ -1,58 +1,63 @@
 package Company;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Employee {
-    public int id;
+public class Employee implements Serializable {
+    public String id;
     public String name;
     public List<String> roles;
     private int leaveBalance;
+    private static final String FILE_NAME = "employees.txt";
 
-    public Employee(int id, String name, List<String> roles, int leaveBalance){
+    public Employee(String id, String name, List<String> roles, int leaveBalance) {
         this.id = id;
         this.name = name;
         this.roles = roles;
         this.leaveBalance = leaveBalance;
     }
 
-    public int getId() { return id; }
-
-    public String getName() { return name; }
-
-    public List<String> getRoles() { return roles; }
-
-    public int getLeaveBalance() { return leaveBalance; }
-
-    public void setName(String name){
-        this.name = name;
+    public boolean hasRoleConflict() {
+        return roles.contains("Approver") && roles.contains("Processor");
     }
 
-    public void setRole(List<String> role){
-        this.roles = role;
+    public String toCSV() {
+        return id + "," + name + "," + String.join("|", roles) + "," + leaveBalance;
     }
 
-    public void setLeaveBalance(int leaveBalance){
-        this.leaveBalance = leaveBalance;
+    public static void saveToFile(List<Employee> employees) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Employee emp : employees) {
+                writer.write(emp.toCSV());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void deductLeave(int days){
-        this.leaveBalance -= days;
-    }
-
-    public boolean hasRoles(String role){
-        return roles != null && roles.contains(role);
-    }
-
-    public boolean hasSoDConflict(){
-        return hasRoles("Processor") && hasRoles("Approver");
+    public static List<Employee> loadFromFile() {
+        List<Employee> employees = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String id = parts[0];
+                String name = parts[1];
+                List<String> roles = Arrays.asList(parts[2].split("\\|"));
+                int leaveBalance = Integer.parseInt(parts[3]);
+                employees.add(new Employee(id, name, roles, leaveBalance));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return employees;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id +
-                ", name='" + name + '\'' +
-                ", role='" + roles + '\'' +
-                ", leaveBalance=" + leaveBalance +
-                '}';
+        return "Employee ID: " + id + ", Name: " + name + ", Roles: " + roles + ", Leave Balance: " + leaveBalance;
     }
 }
