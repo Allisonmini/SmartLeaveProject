@@ -1,42 +1,120 @@
-# SmartLeaveProject
-SmartLeave: A Java-Based Employee Leave and Risk Management System
+# 🛠 Final Project – Java Employee Management System
 
-# Employee Leave Management System
+## 📋 Description
+This Java application allows users to manage employee data with role-based conflict detection and file persistence. It demonstrates key software skills like object-oriented programming, file I/O, and business logic design.
 
-## Overview
-This Java program simulates a simple employee leave management system, including:
-- Employee creation with roles
-- Separation of Duties (SoD) conflict detection
-- Leave request approval with balance checking
+---
 
-## Features
-- Detect SoD conflicts between "Approver" and "Processor"
-- Automatically deduct leave if approved
-- Prevent approval if employee has conflicting roles or insufficient balance
+## ✅ Features
 
-## Classes
-- `Employee.java`: Holds employee data and business logic
-- `LeaveRequest.java`: Represents leave requests and includes approval logic
-- `Main.java`: Runs the demo with sample data
+- ➕ Add employees with ID, name, roles, and leave balance  
+- 🧠 Automatically detects **Separation of Duties (SoD)** conflicts  
+- 💾 Saves and loads employee data to `employees.txt`  
+- 🖨️ Prints a clean console report with flagged conflicts  
 
-## Sample Output
-Employee{id=101, name='Alice', role='[Approver, Processor]', leaveBalance=5}
-Employee{id=102, name='Bob', role='[Viewer]', leaveBalance=2}
-Employee{id=103, name='Carlos', role='[Processor]', leaveBalance=3}
-Employee{id=104, name='Diana', role='[Approver]', leaveBalance=1}
-SoD Conflict: Alice has conflicting roles (Approver & Processor)
-Bob has no SoD conflict.
-Carlos has no SoD conflict.
-Diana has no SoD conflict.
-LeaveRequest{employeeId=101, startDate=2025-06-16, endDate=2030-06-16, type='Vacation', daysRequested=1, approved=false}
-LeaveRequest{employeeId=102, startDate=2024-06-16, endDate=2024-06-16, type='Sick', daysRequested=2, approved=true}
-Approval denied due to SoD conflict for Alice
-Leave approved.
+---
 
-Leave Requests:
-LeaveRequest{employeeId=101, startDate=2025-06-16, endDate=2030-06-16, type='Vacation', daysRequested=1, approved=false}
-LeaveRequest{employeeId=102, startDate=2024-06-16, endDate=2024-06-16, type='Sick', daysRequested=2, approved=true}
+## 📂 File Structure
 
-Updated Employee Info: 
-Employee{id=101, name='Alice', role='[Approver, Processor]', leaveBalance=5}
-Employee{id=102, name='Bob', role='[Viewer]', leaveBalance=0}
+```plaintext
+Company/
+│
+├── Main.java             # Main program logic and test data
+├── Employee.java         # Defines employee model and file I/O
+├── LeaveRequest.java     # Defines structure for future leave request handling
+└── employees.txt         # Auto-generated text file for saving employee records
+
+```markdown
+## 💻 How to Run the Code
+
+Follow these steps to compile and run the project:
+
+1. **Open Terminal or Command Prompt.**
+2. **Navigate to your project folder.**
+   ```bash
+   cd path/to/your/project
+   ```
+
+3. **Compile all Java files:**
+   ```bash
+   javac Company/*.java
+   ```
+
+4. **Run the program:**
+   ```bash
+   java Company.Main
+   ```
+
+---
+
+## 🗃️ Data File Format: `employees.txt`
+
+This file is automatically created by the program and stores employee data in the following CSV format:
+
+```
+ID,Name,Role1|Role2|...,LeaveBalance
+```
+
+**Example:**
+```
+101,Alice,Approver|Processor,5
+102,Bob,Viewer,2
+```
+
+---
+
+## 🖨️ Sample Console Output
+
+```text
+Employee ID: 101, Name: Alice, Roles: [Approver, Processor], Leave Balance: 5
+  -> SoD Conflict Detected!
+Employee ID: 102, Name: Bob, Roles: [Viewer], Leave Balance: 2
+Employee ID: 103, Name: Carlos, Roles: [Processor], Leave Balance: 3
+Employee ID: 104, Name: Diana, Roles: [Approver], Leave Balance: 1
+```
+
+---
+
+## 🧾 Example Report Format
+
+This is an optional format you can use for a `report.txt` or include in a presentation:
+
+```
+=== Employee Report ===
+
+Employee ID: 101
+Name: Alice
+Roles: Approver, Processor
+Leave Balance: 5
+⚠ SoD Conflict: Approver + Processor
+
+Employee ID: 102
+Name: Bob
+Roles: Viewer
+Leave Balance: 2
+✔ No conflicts
+
+Employee ID: 103
+Name: Carlos
+Roles: Processor
+Leave Balance: 3
+✔ No conflicts
+
+Employee ID: 104
+Name: Diana
+Roles: Approver
+Leave Balance: 1
+✔ No conflicts
+
+Generated on: 2025-07-30
+```
+
+---
+
+## 📎 Notes
+
+- `employees.txt` is generated automatically—no need to create it manually.
+- The system flags any **SoD (Separation of Duties)** conflict where an employee has **both "Approver" and "Processor"** roles.
+- The `LeaveRequest.java` file is fully implemented and ready for future features (like leave approvals), though it is not currently active in the demo.
+
+---
