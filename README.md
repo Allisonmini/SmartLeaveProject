@@ -1,6 +1,6 @@
 # Final Project – Java Employee Management System
 
-## 📋 Description
+## Description
 This Java application allows users to manage employee data with role-based conflict detection and file persistence. It demonstrates key software skills like object-oriented programming, file I/O, and business logic design.
 
 ---
@@ -14,7 +14,7 @@ This Java application allows users to manage employee data with role-based confl
 
 ---
 
-## 📂 File Structure
+## File Structure
 
 ```plaintext
 Company/
@@ -118,3 +118,7 @@ Generated on: 2025-07-30
 - The `LeaveRequest.java` file is fully implemented and ready for future features (like leave approvals), though it is not currently active in the demo.
 
 ---
+## Author
+
+Nyein Nyein Aye (Alliosn)
+```
