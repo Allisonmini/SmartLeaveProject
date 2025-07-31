@@ -1,16 +1,16 @@
-# 🛠 Final Project – Java Employee Management System
+# Final Project – Java Employee Management System
 
 ## 📋 Description
 This Java application allows users to manage employee data with role-based conflict detection and file persistence. It demonstrates key software skills like object-oriented programming, file I/O, and business logic design.
 
 ---
 
-## ✅ Features
+##  Features
 
-- ➕ Add employees with ID, name, roles, and leave balance  
-- 🧠 Automatically detects **Separation of Duties (SoD)** conflicts  
-- 💾 Saves and loads employee data to `employees.txt`  
-- 🖨️ Prints a clean console report with flagged conflicts  
+- Add employees with ID, name, roles, and leave balance  
+- Automatically detects **Separation of Duties (SoD)** conflicts  
+- Saves and loads employee data to `employees.txt`  
+- Prints a clean console report with flagged conflicts  
 
 ---
 
@@ -25,7 +25,7 @@ Company/
 └── employees.txt         # Auto-generated text file for saving employee records
 
 ```markdown
-## 💻 How to Run the Code
+## How to Run the Code
 
 Follow these steps to compile and run the project:
 
@@ -47,7 +47,7 @@ Follow these steps to compile and run the project:
 
 ---
 
-## 🗃️ Data File Format: `employees.txt`
+## Data File Format: `employees.txt`
 
 This file is automatically created by the program and stores employee data in the following CSV format:
 
@@ -63,7 +63,7 @@ ID,Name,Role1|Role2|...,LeaveBalance
 
 ---
 
-## 🖨️ Sample Console Output
+## Sample Console Output
 
 ```text
 Employee ID: 101, Name: Alice, Roles: [Approver, Processor], Leave Balance: 5
@@ -75,7 +75,7 @@ Employee ID: 104, Name: Diana, Roles: [Approver], Leave Balance: 1
 
 ---
 
-## 🧾 Example Report Format
+## Example Report Format
 
 This is an optional format you can use for a `report.txt` or include in a presentation:
 
@@ -111,7 +111,7 @@ Generated on: 2025-07-30
 
 ---
 
-## 📎 Notes
+## Notes
 
 - `employees.txt` is generated automatically—no need to create it manually.
 - The system flags any **SoD (Separation of Duties)** conflict where an employee has **both "Approver" and "Processor"** roles.
